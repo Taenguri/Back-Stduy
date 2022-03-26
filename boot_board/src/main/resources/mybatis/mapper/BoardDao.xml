@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.spring.brd.dao.IBoardDao">
+ 
+
+ 
+ 	<select id="list" resultType="com.spring.brd.dto.BoardDto">
+		select * from board order by board_date desc 	
+ 	</select> 
+ 	
+ 	<insert id="write">
+ 	insert into board(board_idx, board_name, board_title, board_content, board_date)
+values(board_seq.nextval,#{board_name}, #{board_title}, #{board_content}, sysdate)
+ 	</insert>
+ 	
+ 	<select id="viewDto" resultType="com.spring.brd.dto.BoardDto">
+ 		select * from board where board_idx = #{board_idx}
+ 	</select>
+ 	
+ 	<delete id="deleteDto">
+ 		delete from board where board_idx = #{board_idx}
+ 	</delete>
+ 	<update id="updateDto">
+ 		update board set
+ 		board_name=#{board_name},
+ 		board_title=#{board_title},
+ 		board_content=#{board_content} where board_idx = #{board_idx}
+ 	</update>
+ 	<update id="hit">
+ 		update board set board_hit=board_hit + 1 where board_idx =#{board_idx}
+ 	</update>
+ 	
+ </mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.spring.brd.dao.IReplyDao">
+ 
+
+ 
+ 	<select id="reply_list" resultType="com.spring.brd.dto.ReplyDto">
+		select * from reply where reply_board_idx = #{reply_board_idx} order by reply_date desc 	
+ 	</select> 
+ 	
+ 	<insert id="reply_write">
+ 	insert into reply(reply_idx, reply_name, reply_content, reply_date, reply_board_idx)
+values(reply_board_seq.nextval,#{reply_name}, #{reply_content}, sysdate, #{reply_board_idx})
+ 	</insert>
+ 	
+ 	<delete id="reply_delete">
+ 		delete from reply where reply_idx = #{reply_idx}
+ 	</delete>
+ 	
+ </mapper>
